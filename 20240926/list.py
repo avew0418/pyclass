@@ -43,6 +43,11 @@ a=[0,1,2,3,4,5]
 b = a[:]
 c= a.copy()
 d = list(a)
+print('copy list')
+print(a)
+print(b)
+print(c)
+print(d)
 
 # list method ( offset )
 a=['apple','banana','banana','orange']
@@ -69,9 +74,9 @@ b=','.join(a) # 使用逗號「,」進行結合
 print(b)# hello world, I am oxxo, how are you?
 
 # use *
-a=['apple','banana','banana','orange']
+a=['apple','banana']
 b=a*3
-print(b)#['apple', 'banana', 'banana', 'orange', 'apple', 'banana', 'banana', 'orange', 'apple', 'banana', 'banana', 'orange']
-print(a)#['apple', 'banana', 'banana', 'orange']
+print(b)#['apple', 'banana', 'apple', 'banana', 'apple', 'banana']
+print(a)#['apple', 'banana']
 
 

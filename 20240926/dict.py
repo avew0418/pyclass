@@ -2,6 +2,12 @@
 # 但是 python 的 dict 可以用任何 hashable 的東西當 key 
 # 且不用 include
 
+# 字典的運算:key-value 配對
+dic={"apple":"蘋果","bug":"蟲蟲"}
+print(dic["apple"])
+dic["apple"]="青蘋果"
+print(dic["apple"])
+
 # 創建 dict
 d = {}
 d = dict()
