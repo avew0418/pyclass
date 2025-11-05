@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>個人檔案</h1>
+  <div class="row">
+    <div class="col-md-4">
+      {% if profile['photo'] %}
+        <img src="{{ url_for('static', filename='uploads/' + profile['photo']) }}" class="img-fluid mb-3">
+      {% else %}
+        <div class="border p-4 text-center">尚未上傳照片</div>
+      {% endif %}
+    </div>
+    <div class="col-md-8">
+      <form method="post" enctype="multipart/form-data">
+        <div class="mb-2">
+          <label class="form-label">姓名</label>
+          <input class="form-control" name="name" value="{{ profile['name'] }}">
+        </div>
+        <div class="mb-2">
+          <label class="form-label">自我介紹</label>
+          <textarea class="form-control" name="bio" rows="4">{{ profile['bio'] }}</textarea>
+        </div>
+        <div class="mb-2">
+          <label class="form-label">上傳大頭照（可選）</label>
+          <input class="form-control" type="file" name="photo" accept="image/*">
+        </div>
+        <button class="btn btn-primary" type="submit">儲存</button>
+      </form>
+      <hr>
+      <a class="btn btn-outline-light mt-3" href="{{ url_for('my_home') }}">檢視個人主頁</a>
+    </div>
+  </div>
+{% endblock %}

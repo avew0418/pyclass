@@ -1,0 +1,145 @@
+/* Neon-green theme: black background, neon green text and accents */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+:root{
+  --bg: #000000;
+  --panel: #050505;
+  --accent: #39FF14; /* brighter neon green */
+  --muted: #00ff37;
+}
+
+html, body { height: 100%; }
+
+body{
+  /* animated subtle gradient background */
+  background: radial-gradient(circle at 10% 10%, rgba(57,255,20,0.02), transparent 10%),
+              radial-gradient(circle at 90% 80%, rgba(57,255,20,0.02), transparent 10%),
+              var(--bg);
+  color: var(--accent);
+  font-family: 'Orbitron', system-ui, sans-serif;
+  padding-bottom: 40px;
+}
+/* Force all text to neon green (no exceptions) */
+/* This uses !important to override framework defaults like Bootstrap */
+body, body * {
+  color: var(--accent) !important;
+}
+
+/* Placeholder text also neon (but slightly dimmer) */
+::placeholder { color: rgba(57,255,20,0.6) !important; }
+:-ms-input-placeholder { color: rgba(57,255,20,0.6) !important; }
+::-ms-input-placeholder { color: rgba(57,255,20,0.6) !important; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: rgba(57,255,20,0.6) !important; }
+
+/* Make text bright neon with glow and remove dimming */
+body, body * {
+  color: var(--accent) !important;
+  opacity: 1 !important; /* prevent dimmed opacity */
+  filter: none !important; /* remove any dimming filters */
+  text-shadow: 0 0 6px rgba(57,255,20,0.95), 0 0 14px rgba(57,255,20,0.55) !important;
+}
+
+/* Ensure interactive elements are bright too */
+a, a:visited, a:hover, a:active,
+h1, h2, h3, h4, h5, h6,
+p, li, span, label, small, strong, em, b, i {
+  color: var(--accent) !important;
+  text-shadow: 0 0 6px rgba(57,255,20,0.95), 0 0 14px rgba(57,255,20,0.55) !important;
+}
+
+/* Remove common 'muted' dim classes */
+.text-muted, .muted, .dim, .faded {
+  color: var(--accent) !important;
+  opacity: 1 !important;
+}
+
+/* Placeholders fully bright */
+::placeholder, input::placeholder, textarea::placeholder {
+  color: var(--accent) !important;
+  opacity: 1 !important;
+}
+
+/* Make SVG fills/strokes neon as well */
+svg, svg * { fill: var(--accent) !important; stroke: var(--accent) !important; }
+
+/* Input caret/selection more visible */
+input, textarea {
+  caret-color: var(--accent) !important;
+}
+
+/* Make selected text visible */
+::selection { background: rgba(57,255,20,0.12); color: var(--accent) !important; }
+
+.container{ max-width: 960px }
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border:1px solid rgb(0, 255, 128);
+  box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+}
+
+.neon-card{ border-left:4px solid var(--accent); }
+
+a{ color: var(--accent); text-decoration: none; }
+
+.navbar{ background: rgba(0,0,0,0.85); }
+
+.btn-outline-light{ color:var(--accent); border-color: rgb(0, 255, 128) }
+
+.btn-primary{ background: var(--accent); border: none; color: #00110a }
+
+.form-control{ background: transparent; color: var(--accent); border:1px solid rgba(0,255,127,0.06) }
+
+.alert{ background: rgba(0,255,127,0.03); color: var(--accent); border:1px solid rgba(0,255,127,0.08) }
+
+.img-fluid{ border:1px solid rgba(0,255,127,0.04); }
+.text-muted{ color: var(--muted) }
+
+/* Headings glow */
+h1,h2,h3{ text-shadow: 0 0 8px rgb(0, 255, 128); }
+
+.form-control:focus{ box-shadow: 0 0 8px rgb(0, 255, 128); border-color: rgba(0,255,127,0.2) }
+.btn{ box-shadow: 0 6px 18px rgba(0,255,127,0.06); }
+
+/* neon sweep animation (glint) */
+.neon-sweep{ position: relative; overflow: hidden }
+.neon-sweep::after{
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: linear-gradient(120deg, rgba(57,255,20,0) 0%, rgba(255,255,255,0.18) 50%, rgba(57,255,20,0) 100%);
+  transform: translateX(-100%) rotate(15deg);
+  filter: blur(8px);
+  opacity: 0.9;
+  animation: sweep 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sweep{
+  0%{ transform: translateX(-100%) rotate(15deg); opacity:0 }
+  10%{ opacity:0.6 }
+  50%{ transform: translateX(0%) rotate(15deg); opacity:0.9 }
+  90%{ opacity:0.6 }
+  100%{ transform: translateX(100%) rotate(15deg); opacity:0 }
+}
+
+/* animated background shifting for subtle motion */
+@keyframes bgmove{
+  0%{ background-position: 0% 0%, 100% 100%, 50% 50% }
+  50%{ background-position: 20% 10%, 80% 90%, 50% 50% }
+  100%{ background-position: 0% 0%, 100% 100%, 50% 50% }
+}
+body{ animation: bgmove 12s linear infinite; }
+
+/* apply sweep to card titles and buttons */
+.card-title a, .btn-primary{ position: relative }
+.card-title a.neon-sweep::after, .btn-primary.neon-sweep::after{ display: block }
+
+/* subtle flicker for neon text */
+@keyframes flicker{
+  0%{ opacity:1 }
+  50%{ opacity:0.92 }
+  100%{ opacity:1 }
+}
+h1,h2{ animation: flicker 3s infinite }

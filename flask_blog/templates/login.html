@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>登入</h1>
+  <form method="post">
+    <div class="mb-2">
+      <label class="form-label">使用者名稱</label>
+      <input class="form-control" name="username" required>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">密碼</label>
+      <input class="form-control" name="password" type="password" required>
+    </div>
+    <button class="btn btn-primary" type="submit">登入</button>
+    <a class="btn btn-link" href="{{ url_for('register') }}">註冊</a>
+  </form>
+{% endblock %}

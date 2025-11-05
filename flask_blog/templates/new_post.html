@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>新增文章</h1>
+  <form method="post" enctype="multipart/form-data">
+    <div class="mb-2">
+      <label class="form-label">作者 (可留空以使用個人檔案名稱)</label>
+      <input class="form-control" name="author" value="{{ profile_name if profile_name is defined else '' }}">
+    </div>
+    <div class="mb-2">
+      <label class="form-label">標題</label>
+      <input class="form-control" name="title" required>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">內容</label>
+      <textarea class="form-control" name="content" rows="6" required></textarea>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">照片（可選）</label>
+      <input class="form-control" type="file" name="image" accept="image/*">
+    </div>
+    <button class="btn btn-success" type="submit">發表</button>
+  </form>
+{% endblock %}
